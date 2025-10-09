@@ -31,6 +31,10 @@ function runA1() {
         return Shape.prototype.describe.call(this) + " Rectangle " + this.width + "x" + this.height;
     };
 
+    Rectangle.prototype.color = function(r, g, b){
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
     // 3) Square
     // TODO(e): Square(side) should call Rectangle with width=height=side.
     function Square(side) { 
@@ -54,6 +58,9 @@ function runA1() {
         const r1 = new Rectangle(3, 4);
         const r2 = new Rectangle(5, 6);
         const sq = new Square(4);
+    
+        console.log("r1 color =", r1.color(255,0,0), "(expect rgb(255,0,0))");
+        console.log("sq color =", sq.color(255,0,0), "(expect rgb(255,0,0))");
 
         console.log("r1 area =", r1.getArea(), "(expect 12)");
         console.log("r2 area =", r2.getArea(), "(expect 30)");

@@ -1,0 +1,59 @@
+.character-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.character-list-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+.load-button {
+  display: block;
+  margin: 0 auto 30px auto;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.load-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.load-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.character-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .character-list-container {
+    padding: 15px;
+  }
+  
+  .character-list-container h1 {
+    font-size: 2em;
+  }
+}
