@@ -6,6 +6,7 @@ const CharacterList = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const loadCharacters = async () => {
     setLoading(true);
@@ -27,6 +28,18 @@ const CharacterList = () => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm('');
+  };
+
+  const filteredCharacters = characters.filter(character =>
+    character.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="character-list-container">
       <h1>Rick and Morty Characters</h1>
@@ -42,14 +55,43 @@ const CharacterList = () => {
       {error && <div className="error-message">Error: {error}</div>}
 
       {characters.length > 0 && (
-        <ul className="character-list">
-          {characters.map(character => (
-            <CharacterCard 
-              key={character.id} 
-              character={character} 
+        <>
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search characters by name..."
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
-          ))}
-        </ul>
+            <button 
+              className="clear-button" 
+              onClick={handleClearSearch}
+              disabled={!searchTerm}
+            >
+              Clear
+            </button>
+          </div>
+
+          <div className="results-info">
+            Showing {filteredCharacters.length} of {characters.length} characters
+          </div>
+
+          <ul className="character-list">
+            {filteredCharacters.map(character => (
+              <CharacterCard 
+                key={character.id} 
+                character={character} 
+              />
+            ))}
+          </ul>
+
+          {filteredCharacters.length === 0 && searchTerm && (
+            <div className="no-results">
+              No characters found matching "{searchTerm}"
+            </div>
+          )}
+        </>
       )}
     </div>
   );
