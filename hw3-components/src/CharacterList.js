@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CharacterCard from './CharacterCard';
 import './CharacterList.css';
 
@@ -36,8 +36,13 @@ const CharacterList = () => {
     setSearchTerm('');
   };
 
+  useEffect(() => {
+    loadCharacters();
+  }, []); 
+
   const filteredCharacters = characters.filter(character =>
-    character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    character.location.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
