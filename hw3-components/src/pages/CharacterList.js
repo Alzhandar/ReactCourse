@@ -4,7 +4,7 @@ import * as charactersService from '../services/charactersService';
 import CharacterCard from '../components/CharacterCard';
 import Spinner from '../components/shared/Spinner';
 import ErrorBox from '../components/shared/ErrorBox';
-import './CharacterList.css';
+import '../styles/pages/CharacterList.css';
 
 const CharacterList = () => {
   const [characters, setCharacters] = useState([]);

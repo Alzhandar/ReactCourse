@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import * as charactersService from '../services/charactersService';
 import Spinner from '../components/shared/Spinner';
 import ErrorBox from '../components/shared/ErrorBox';
-import './CharacterDetails.css';
+import '../styles/pages/CharacterDetails.css';
 
 const CharacterDetails = () => {
   const [character, setCharacter] = useState(null);

@@ -1,5 +1,5 @@
 import React from 'react';
-import './CharacterCard.css';
+import '../styles/components/CharacterCard.css';
 
 const CharacterCard = ({ character }) => {
   return (
