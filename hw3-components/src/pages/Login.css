@@ -1,0 +1,42 @@
+.login-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.login-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.login-container h1 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin: 0 0 16px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.login-container p {
+  font-size: 1.05rem;
+  color: #666666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    padding: 40px 16px;
+  }
+  
+  .login-container {
+    padding: 32px 24px;
+  }
+  
+  .login-container h1 {
+    font-size: 2rem;
+  }
+}
