@@ -41,10 +41,6 @@ const CharacterList = () => {
     }
   };
 
-  const handleClearSearch = () => {
-    setSearchParams({});
-  };
-
   const filteredCharacters = characters.filter(character =>
     character.name.toLowerCase().includes(searchTerm.toLowerCase())
   );

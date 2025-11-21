@@ -1,8 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/components/NavBar.css';
 
 const NavBar = () => {
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -37,14 +50,43 @@ const NavBar = () => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink 
-              to="/login" 
-              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
-            >
-              Login
-            </NavLink>
-          </li>
+          
+          {currentUser ? (
+            <>
+              <li>
+                <NavLink 
+                  to="/profile" 
+                  className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="nav-link nav-logout">
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink 
+                  to="/login" 
+                  className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/signup" 
+                  className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                >
+                  Sign Up
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

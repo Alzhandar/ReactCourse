@@ -96,3 +96,16 @@
     right: 16px;
   }
 }
+.nav-logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+}
+
+.nav-logout:hover {
+  color: #c00 !important;
+  border-bottom-color: #c00 !important;
+}

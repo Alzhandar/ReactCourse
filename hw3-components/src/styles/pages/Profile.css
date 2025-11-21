@@ -1,0 +1,93 @@
+.profile-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.profile-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 48px;
+  border: 1px solid #e5e5e5;
+}
+
+.profile-container h1 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin: 0 0 40px 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+.profile-section {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 16px;
+}
+
+.profile-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-section h2 {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-section p {
+  font-size: 1.15rem;
+  color: #000000;
+  margin: 0;
+  font-weight: 500;
+}
+
+.user-id {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem !important;
+  color: #666666 !important;
+  word-break: break-all;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background: #c00;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 24px 16px;
+  }
+  
+  .profile-container {
+    padding: 32px 24px;
+  }
+  
+  .profile-container h1 {
+    font-size: 2rem;
+  }
+}
