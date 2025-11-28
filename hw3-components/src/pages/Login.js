@@ -9,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -29,10 +30,14 @@ const Login = () => {
         setError('No account found with this email');
       } else if (err.code === 'auth/wrong-password') {
         setError('Incorrect password');
+        setPassword('');
       } else if (err.code === 'auth/invalid-email') {
         setError('Invalid email address');
+        setEmail('');
       } else if (err.code === 'auth/invalid-credential') {
         setError('Invalid email or password');
+        setPassword('');
+        setEmail('');
       } else {
         setError('Failed to log in: ' + err.message);
       }

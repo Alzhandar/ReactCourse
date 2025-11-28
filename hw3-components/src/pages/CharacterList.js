@@ -1,36 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import * as charactersService from '../services/charactersService';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCharacters, setQuery } from '../features/characters/charactersSlice';
 import CharacterCard from '../components/CharacterCard';
 import Spinner from '../components/shared/Spinner';
 import ErrorBox from '../components/shared/ErrorBox';
 import '../styles/pages/CharacterList.css';
 
 const CharacterList = () => {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  
+  const { list, loadingList, errorList, query } = useSelector((state) => state.characters);
   
   const searchTerm = searchParams.get('q') || '';
 
   useEffect(() => {
-    loadCharacters();
-  }, []);
-
-  const loadCharacters = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const data = await charactersService.getAll();
-      setCharacters(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    dispatch(fetchCharacters(searchTerm));
+    dispatch(setQuery(searchTerm));
+  }, [dispatch, searchTerm]);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -41,12 +29,12 @@ const CharacterList = () => {
     }
   };
 
-  const filteredCharacters = characters.filter(character =>
+  const filteredCharacters = list.filter(character =>
     character.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (loading) return <Spinner />;
-  if (error) return <ErrorBox message={error} />;
+  if (loadingList) return <Spinner />;
+  if (errorList) return <ErrorBox message={errorList} />;
 
   return (
     <div className="character-list-page">
@@ -55,7 +43,7 @@ const CharacterList = () => {
         <p>Explore the multiverse and discover your favorite characters</p>
       </div>
       
-      {characters.length > 0 && (
+      {list.length > 0 && (
         <>
           <div className="search-section">
             <div className="search-box">
