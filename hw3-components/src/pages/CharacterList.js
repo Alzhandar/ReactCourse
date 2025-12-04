@@ -11,7 +11,7 @@ const CharacterList = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   
-  const { list, loadingList, errorList, query } = useSelector((state) => state.characters);
+  const { list, loadingList, errorList } = useSelector((state) => state.characters);
   
   const searchTerm = searchParams.get('q') || '';
 
